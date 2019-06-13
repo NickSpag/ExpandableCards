@@ -17,6 +17,23 @@ namespace ExpandableCardExample.Views
 
         }
 
+        public static NavigationPage CreateInNavigationPage()
+        {
+            var page = new CardsPage();
+
+            //if I wanted to hide the bar all together: (keep in mind you'll need to add extra spacing for notch-devices like iPhoneX
+            //page.SetValue(NavigationPage.HasNavigationBarProperty, false);
+
+            var navPage = new NavigationPage(page)
+            {
+                BarTextColor = Color.FromHex("#11BF88"),
+                BarBackgroundColor = Color.White,
+                IconImageSource = "cardsIcon.png",
+                Title = "Cards",
+            };
+
+            return navPage;
+        }
         protected override void OnBindingContextChanged()
         {
             base.OnBindingContextChanged();
