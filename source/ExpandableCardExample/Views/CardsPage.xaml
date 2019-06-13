@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="ExpandableCardExample.Views.CardsPage" 
+             xmlns:vm="clr-namespace:ExpandableCardExample.ViewModels"
+             xmlns:local="clr-namespace:ExpandableCardExample"
+             Title="{Binding Title}">
+    <ContentPage.BindingContext>
+        <vm:CardsPageViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <!-- Converters -->
+            <local:ButtonMessageConverter x:Key="buttonMessageConverter"/>
+            
+            <!-- Colors -->
+            <Color x:Key="Primary">#2196F3</Color>
+            <Color x:Key="Accent">#00C88B</Color>
+            <Color x:Key="AccentDark">#11BF88</Color>
+            <Color x:Key="LightTextColor">#999999</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+        <StackLayout Orientation="Vertical" Margin="20" Spacing="20">
+            <!-- STATIC HEADER CARD -->
+            <Frame BackgroundColor="White"
+                   Padding="0"
+                   HasShadow="false"
+                   BorderColor="Black">
+                <StackLayout Orientation="Vertical" Padding="12" Spacing="10">
+                    <StackLayout Orientation="Horizontal">                
+                        <Label FontSize="20" 
+                               Text="Static header card" 
+                               HorizontalOptions="StartAndExpand"
+                               VerticalTextAlignment="Center"/>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+        
+            <!-- DYNAMIC NOTIFICATION CARD -->
+            <Frame BackgroundColor="{StaticResource Accent}"
+                   Padding="0"
+                   HasShadow="false"
+                   BorderColor="{StaticResource AccentDark}"
+                   IsVisible="{x:Binding HasNotification}">
+                <StackLayout Orientation="Vertical" Padding="10" Spacing="10">
+                    <StackLayout Orientation="Horizontal">                
+                        <Label FontSize="22" 
+                               FontAttributes="Bold" 
+                               Text="Notification!" 
+                               HorizontalOptions="StartAndExpand"
+                               VerticalTextAlignment="Center"/>
+                        <ImageButton x:Name="ChevronButton" Source="chevronDown" Scale=".5" Clicked="Chevron_Clicked"/>
+
+                    </StackLayout>
+                    <ContentView x:Name="CollapsableContent" IsVisible="false">
+                        <Label Text="The full notification text could go here."/>
+                    </ContentView>
+                </StackLayout>
+            </Frame>
+        
+            <!-- STATIC CARD -->
+            <Frame BackgroundColor="White"
+                   Padding="0"
+                   HasShadow="false"
+                   BorderColor="Black">
+                <StackLayout Orientation="Vertical" Padding="16, 20, 16, 20" Spacing="10">
+                    <Label FontSize="22" Text="Expandable Card Example" FontAttributes="Bold"/>
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <FormattedString.Spans>
+                                    <Span Text="This is an example project that shows how to animate the appearence, dissapearence, and expansion of a card-like view in" />
+                                    <Span Text=" " />
+                                    <Span Text="Xamarin.Forms" FontAttributes="Bold" />
+                                    <Span Text="." />
+                                </FormattedString.Spans>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label Text="Press below to show the new notification-like card."/>
+                    <Button x:Name="ToggleNotificationButton" 
+                            Margin="0,10,0,0" 
+                            Text="{x:Binding HasNotification, Converter={StaticResource buttonMessageConverter}}" 
+                            Command="{x:Binding ToggleNotificationCommand}" 
+                            BackgroundColor="{StaticResource Primary}" 
+                            TextColor="White" />
+                </StackLayout>
+            </Frame>
+        
+            <!-- STATIC FOOTER CARD -->
+            <Frame BackgroundColor="White"
+                   Padding="0"
+                   HasShadow="false"
+                   BorderColor="Black">
+                <StackLayout Orientation="Vertical" Padding="12" Spacing="10">
+                    <StackLayout Orientation="Horizontal">                
+                        <Label FontSize="20" 
+                               Text="Static footer card" 
+                               HorizontalOptions="StartAndExpand"
+                               VerticalTextAlignment="Center"/>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+
+        </StackLayout>
+</ContentPage>
