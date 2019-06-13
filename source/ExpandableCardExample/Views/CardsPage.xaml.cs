@@ -1,7 +1,5 @@
-﻿using System;
+﻿using Xamarin.Forms;
 
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 using ExpandableCardExample.ViewModels;
 
 namespace ExpandableCardExample.Views
@@ -52,20 +50,6 @@ namespace ExpandableCardExample.Views
             _collapsed = !_collapsed;
 
             CollapsableContent.IsVisible = !_collapsed;
-
-            //if (_collapsed)
-            //{
-            //    CollapsableContent.IsVisible =
-
-            //    //hide it
-            //    ShowNotificationButton.Text = "Show notification";
-            //}
-            //else
-            //{
-            //    ShowNotificationButton.Text = "Hide notification";
-            //}
-
-            //viewModel.HasNotification = !viewModel.HasNotification;
 
             await rotationAnimation;
         }
