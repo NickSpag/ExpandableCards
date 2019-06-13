@@ -14,7 +14,7 @@ namespace ExpandableCardExample
             InitializeComponent();
 
             DependencyService.Register<MockDataStore>();
-            MainPage = new MainPage();
+            MainPage = new MainTabbedPage();
         }
 
         protected override void OnStart()
